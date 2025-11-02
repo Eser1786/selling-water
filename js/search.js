@@ -330,9 +330,9 @@ function renderPagination(
   if (currentPage > 1) {
     html += `<button class="page-btn" onclick="${buildOnClick(
       currentPage - 1
-    )}">Trước</button>`;
+    )}"><i class="fa-solid fa-arrow-left"></i></button>`;
   } else {
-    html += `<button class="page-btn disabled">Trước</button>`;
+    html += `<button class="page-btn disabled"><i class="fa-solid fa-arrow-left"></i></button>`;
   }
 
   const startPage = Math.max(1, currentPage - 2);
@@ -362,9 +362,9 @@ function renderPagination(
   if (currentPage < totalPages) {
     html += `<button class="page-btn" onclick="${buildOnClick(
       currentPage + 1
-    )}">Sau</button>`;
+    )}"><i class="fa-solid fa-arrow-right"></i></button>`;
   } else {
-    html += `<button class="page-btn disabled">Sau</button>`;
+    html += `<button class="page-btn disabled"><i class="fa-solid fa-arrow-right"></i></button>`;
   }
 
   html += `</div>`;

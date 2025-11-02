@@ -213,7 +213,6 @@
   margin-left: 400px;
 }
 
-
 #order-history {
   margin-top: 20px;
   max-height: 500px;
@@ -230,7 +229,7 @@
   background: #fff;
   border: 1px solid #eee;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .order-item h3 {
@@ -267,6 +266,11 @@
 .order-item p strong {
   color: #2c3e50;
 }
+
+#register-address_label {
+  margin-left: 420px;
+}
+
 /* ========================================
 RESPONSIVE - THÊM VÀO CUỐI FILE account.css
 ======================================== */

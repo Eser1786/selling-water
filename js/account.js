@@ -32,10 +32,14 @@ function registerToLogin(event) {
     return false;
   }
 
+  // lấy địa chỉ của khách hàng trong phần đăng ký
+  const address = document.getElementById("register-address").value;
+
   alert("Đăng ký thành công");
 
   localStorage.setItem("userName", userName);
   localStorage.setItem("password", password);
+  localStorage.setItem("address", address);
 
   switchToLogin();
 }
@@ -59,17 +63,18 @@ function Login(event) {
 
 function luuDuLieu() {
   // LẤY DỮ LIỆU CŨ (để giữ lại mảng orders)
-  const existingData = JSON.parse(localStorage.getItem("thongTinKhachHang")) || {};
+  const existingData =
+    JSON.parse(localStorage.getItem("thongTinKhachHang")) || {};
 
   // CẬP NHẬT CHỈ CÁC TRƯỜNG MỚI, GIỮ NGUYÊN orders
   const data = {
-    ...existingData,  // ← QUAN TRỌNG: Giữ lại orders và các dữ liệu khác
+    existingData, // ← QUAN TRỌNG: Giữ lại orders và các dữ liệu khác
     name: document.getElementById("customer-name").value,
     phone: document.getElementById("customer-phone").value,
     DOB: document.getElementById("customer-DOB").value,
     userName: localStorage.getElementById("userName"),
     email: document.getElementById("customer-email").value,
-    address: document.getElementById("customer-address").value,
+    address: localStorage.getItem("address").value,
   };
 
   alert("Lưu dữ liệu thành công!");
@@ -167,23 +172,31 @@ function renderOrderHistory() {
   const data = JSON.parse(localStorage.getItem("thongTinKhachHang"));
   const historyContainer = document.getElementById("order-history");
   if (!historyContainer || !data || !data.orders || data.orders.length === 0) {
-    historyContainer.innerHTML = '<p style="text-align:center; color:#999;">Chưa có đơn hàng nào.</p>';
+    historyContainer.innerHTML =
+      '<p style="text-align:center; color:#999;">Chưa có đơn hàng nào.</p>';
     return;
   }
 
-  let html = '<div style="margin-bottom:15px;"><button onclick="backToAccount()" class="submit-button">Quay lại</button></div>';
+  let html =
+    '<div style="margin-bottom:15px;"><button onclick="backToAccount()" class="submit-button">Quay lại</button></div>';
   data.orders.forEach((order, index) => {
     let total = order.items.reduce((sum, i) => sum + i.price * i.qty, 0);
     html += `
       <div class="order-item">
-        <h3>Đơn hàng #${index + 1} <small style="color:#666;">(${order.date})</small></h3>
+        <h3>Đơn hàng #${index + 1} <small style="color:#666;">(${
+      order.date
+    })</small></h3>
         <div class="order-items">
-          ${order.items.map(item => `
+          ${order.items
+            .map(
+              (item) => `
             <div>
               <span>${item.name} × ${item.qty}</span>
               <span>${(item.price * item.qty).toLocaleString()} VNĐ</span>
             </div>
-          `).join('')}
+          `
+            )
+            .join("")}
         </div>
         <p><strong>Tổng cộng:</strong> ${total.toLocaleString()} VNĐ</p>
         <p><strong>Thanh toán:</strong> ${order.payment}</p>
