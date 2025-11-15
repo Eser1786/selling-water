@@ -283,12 +283,6 @@
             <!-- KẾT THÚC PHẦN NÂNG CAO -->
             <div class="products-grid">
               <ul class="product-items"></ul>
-
-              <div
-                class="pagination"
-                style="margin-top: 30px; text-align: center"
-              ></div>
-
               <div
                 class="pagination"
                 style="margin-top: 30px; text-align: center"
@@ -301,8 +295,6 @@
               class="detail-container"
               style="display: none"
             ></div>
-            <!-- phân trang -->
-            <div class="pagination-controls" style="display: none"></div>
           </main>
         </div>
       </div>
@@ -656,6 +648,7 @@
                 type="button"
                 class="submit-button"
                 onclick="showOrderHistory()"
+                id="history-order"
               >
                 Xem lịch sử đơn hàng
               </button>
@@ -690,8 +683,6 @@
               border-radius: 10px;
               border: 1px solid #ddd;
               padding: 15px;
-              margin-top: 120px;
-              border: solid 1px black;
             "
           >
             <!-- Nội dung sẽ được render bằng JS -->
